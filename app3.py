@@ -9,15 +9,19 @@ from langchain_community.vectorstores import Pinecone as PineconeVectorStore
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 from langchain_community.llms import OpenAI
+from dotenv import load_dotenv
+import os
 
-# Configuration Variables
-PINECONE_API_KEY = "f2b2ec2f-916b-4773-a552-e67f7befbb27"
-OPENAI_API_KEY = 'sk-proj-yLLweCx76kViM0yuo8uET3BlbkFJqofK5PcFmDRY0u8PAX2j'
-INDEX_NAME = "bug-analysis"
-DIMENSION = 1536
-METRIC = "cosine"
-CLOUD = "aws"
-REGION = "us-east-1"
+# Load environment variables from .env file
+load_dotenv()
+
+PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+INDEX_NAME = os.getenv("INDEX_NAME")
+DIMENSION = int(os.getenv("DIMENSION"))
+METRIC = os.getenv("METRIC")
+CLOUD = os.getenv("CLOUD")
+REGION = os.getenv("REGION")
 
 # Initialize Pinecone using the Pinecone class
 pinecone = Pinecone(api_key=PINECONE_API_KEY)
@@ -39,20 +43,20 @@ openai.api_key = OPENAI_API_KEY
 
 # embedding_model = OpenAIEmbeddings(model="text-embedding-ada-002", openai_api_key=OPENAI_API_KEY)
 def get_embedding(text):
-    response = openai.Embedding.create(
+    response = openai.embeddings.create(
         input=text,
         model="text-embedding-ada-002"
     )
-    return response['data'][0]['embedding']
+    return response.data[0].embedding
 # llm = OpenAI(model_name="gpt-4-turbo", openai_api_key=OPENAI_API_KEY)
 
 def generate_text(prompt):
-    response = openai.ChatCompletion.create(
+    response = openai.chat.completions.create(
         model="gpt-4-turbo",
         messages=[{"role": "user", "content": prompt}],
-        max_tokens=100
+        max_tokens=1000
     )
-    return response.choices[0].message['content'].strip()
+    return response.choices[0].message.content
 
 
 # Replace usage of `llm` with `generate_text`
@@ -191,8 +195,8 @@ if st.button("Analyze Bug"):
                 search_results = vector_store.similarity_search_by_vector_with_score(embedding=new_bug_embedding, k=5, namespace='ns1')
                 # print(search_results)
                 # Print the type of search_results for debugging
-                print("Type of search_results:", type(search_results))
-                print("Contents of search_results:", search_results)
+                # print("Type of search_results:", type(search_results))
+                # print("Contents of search_results:", search_results)
 
             except Exception as e:
                 st.error(f"Error during similarity search: {str(e)}")
@@ -201,8 +205,8 @@ if st.button("Analyze Bug"):
                 st.write("Top 3 Similar Bugs Found:")
                 for result, score in search_results[:3]:
                     # Print the type and contents of result for debugging
-                    print("Type of result:", type(result))
-                    print("Contents of result:", result)
+                    # print("Type of result:", type(result))
+                    # print("Contents of result:", result)
 
                     # Access attributes of Document object
                     try:
@@ -231,8 +235,8 @@ if 'search_results' in locals() and search_results:
     st.sidebar.subheader("Similar Bugs")
     for result, _ in search_results:
         # Print the type and contents of result for debugging
-        print("Type of result in sidebar:", type(result))
-        print("Contents of result in sidebar:", result)
+        # print("Type of result in sidebar:", type(result))
+        # print("Contents of result in sidebar:", result)
 
         # Access attributes of Document object
         try:

@@ -5,3 +5,4 @@ openai
 pinecone-client
 langchain
 langchain-community
+python-dotenv
