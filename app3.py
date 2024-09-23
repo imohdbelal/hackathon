@@ -226,7 +226,7 @@ if st.button("Analyze Bug"):
                             st.error(f"Error processing result: {str(e)}")
 
                     # Display bug data in a table
-                    st.table(bug_data)
+                    st.dataframe(bug_data, hide_index=True)
 
                     # get median of resolution times
                     if resolution_times:
