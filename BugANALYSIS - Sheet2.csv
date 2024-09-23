@@ -1,10 +1,10 @@
-bug_id,bug_source,description,status,priority,report_date,resolution_date,resolution_time,solution_steps,assigned_to,tags
+bug_id,bug_source,description,status,priority,report_date,resolution_date,resolution_time_hrs,solution_steps,assigned_to,tags
 1,JIRA,"Bug: Form submission causes a server error.
 Steps to Reproduce:
 1. Go to the 'Contact Us' page.
 2. Fill in all the fields and click 'Submit'.
 Expected Behavior: The form should be submitted and a confirmation message should appear.
-Actual Behavior: A 500 Internal Server Error occurs on submission.",Resolved,P2,2024-01-12,2024-01-14,2 days,"1. Investigated logs and identified a missing error handler.
+Actual Behavior: A 500 Internal Server Error occurs on submission.",Resolved,P2,2024-01-12,2024-01-14,16,"1. Investigated logs and identified a missing error handler.
 2. Added error handling in the submitForm() API.
 3. Updated backend to validate form inputs.
 4. Added frontend JavaScript validation for user feedback.
@@ -15,7 +15,7 @@ Steps to Reproduce:
 1. Log in and navigate to the dashboard.
 2. Wait for the dashboard data to load.
 Expected Behavior: Dashboard should load within a few seconds.
-Actual Behavior: The loading spinner never disappears.",Resolved,P1,2024-01-08,2024-01-09,1 day,"1. Analyzed server-side logs and identified a timeout issue.
+Actual Behavior: The loading spinner never disappears.",Resolved,P1,2024-01-08,2024-01-09,8,"1. Analyzed server-side logs and identified a timeout issue.
 2. Optimized backend API response times by reducing unnecessary data fetching.
 3. Updated front-end logic to display an error message if the response takes too long.
 4. Tested with different network conditions.
@@ -25,7 +25,7 @@ Steps to Reproduce:
 1. Open the product page on a mobile device.
 2. Scroll down to the product description section.
 Expected Behavior: The layout should be responsive and adjust to mobile view.
-Actual Behavior: The product image overlaps with the text.",Resolved,P3,2024-01-15,2024-01-16,1 day,"1. Identified incorrect CSS media query for mobile devices.
+Actual Behavior: The product image overlaps with the text.",Resolved,P3,2024-01-15,2024-01-16,8,"1. Identified incorrect CSS media query for mobile devices.
 2. Updated CSS to adjust padding and margins for smaller screens.
 3. Tested on multiple mobile devices to ensure responsiveness.
 4. Deployed the fix via the CI/CD pipeline and confirmed resolution.",Charlie,UI Bug
@@ -42,7 +42,7 @@ Steps to Reproduce:
 1. Log in to the web application.
 2. Wait for 10 minutes of inactivity.
 Expected Behavior: User session should remain active for at least 30 minutes.
-Actual Behavior: Users are logged out after 10 minutes of inactivity.",Resolved,P1,2024-01-10,2024-01-11,1 day,"1. Investigated session management settings and identified incorrect timeout configuration.
+Actual Behavior: Users are logged out after 10 minutes of inactivity.",Resolved,P1,2024-01-10,2024-01-11,8,"1. Investigated session management settings and identified incorrect timeout configuration.
 2. Increased session timeout to 30 minutes in the backend.
 3. Tested session timeout with various user inactivity periods.
 4. Deployed the fix and verified the session remained active as expected.",Emma,Authentication
@@ -51,7 +51,7 @@ Steps to Reproduce:
 1. Open the form and fill in all fields.
 2. Click 'Save'.
 Expected Behavior: The form should save and display a success message.
-Actual Behavior: Nothing happens when the button is clicked.",Resolved,P3,2024-01-05,2024-01-06,1 day,"1. Identified missing event listener in the JavaScript file.
+Actual Behavior: Nothing happens when the button is clicked.",Resolved,P3,2024-01-05,2024-01-06,8,"1. Identified missing event listener in the JavaScript file.
 2. Added the correct event handler for the 'Save' button.
 3. Tested the form submission on multiple browsers.
 4. Deployed the fix and confirmed the button now works as expected.",Alice,UI Bug
@@ -59,7 +59,7 @@ Actual Behavior: Nothing happens when the button is clicked.",Resolved,P3,2024-0
 Steps to Reproduce:
 1. Complete a transaction and view the invoice.
 Expected Behavior: The total should accurately reflect the transaction amount.
-Actual Behavior: The total is off by a few cents.",Resolved,P2,2024-01-03,2024-01-04,1 day,"1. Identified rounding error in the backend calculation logic.
+Actual Behavior: The total is off by a few cents.",Resolved,P2,2024-01-03,2024-01-04,8,"1. Identified rounding error in the backend calculation logic.
 2. Fixed the rounding issue and updated the calculation method.
 3. Tested with various transaction amounts to confirm accuracy.
 4. Deployed the fix and confirmed the correct totals are now displayed.",Bob,Finance
@@ -74,7 +74,7 @@ Actual Behavior: The API returns a 'Rate limit exceeded' error after a few reque
 Steps to Reproduce:
 1. Try to upload an image to a project.
 Expected Behavior: The image should upload successfully.
-Actual Behavior: The upload freezes halfway and does not complete.",Resolved,P2,2024-01-02,2024-01-04,2 days,"1. Investigated server logs and identified a timeout issue during the upload process.
+Actual Behavior: The upload freezes halfway and does not complete.",Resolved,P2,2024-01-02,2024-01-04,8,"1. Investigated server logs and identified a timeout issue during the upload process.
 2. Increased the server-side upload timeout limit.
 3. Optimized image compression algorithm for faster uploads.
 4. Tested with large and small images to ensure stability.
@@ -83,7 +83,7 @@ Actual Behavior: The upload freezes halfway and does not complete.",Resolved,P2,
 Steps to Reproduce:
 1. Use the search functionality to look up records.
 Expected Behavior: Results should load within a few seconds.
-Actual Behavior: Results take over 30 seconds to appear.",Resolved,P2,2024-01-09,2024-01-10,1 day,"1. Optimized the database queries behind the search functionality.
+Actual Behavior: Results take over 30 seconds to appear.",Resolved,P2,2024-01-09,2024-01-10,8,"1. Optimized the database queries behind the search functionality.
 2. Added caching for frequently searched terms.
 3. Tested search speeds with various keywords.
 4. Deployed the fix and confirmed the search now loads quickly.",Emma,Performance
@@ -91,7 +91,7 @@ Actual Behavior: Results take over 30 seconds to appear.",Resolved,P2,2024-01-09
 Steps to Reproduce:
 1. Click on the search bar and start typing.
 Expected Behavior: Relevant suggestions should be displayed.
-Actual Behavior: No suggestions are displayed.",Resolved,P3,2024-01-05,2024-01-07,2 days,"1. Identified a missing query to fetch suggestions.
+Actual Behavior: No suggestions are displayed.",Resolved,P3,2024-01-05,2024-01-07,8,"1. Identified a missing query to fetch suggestions.
 2. Added a new function to dynamically load suggestions.
 3. Implemented front-end changes to show suggestions.
 4. Tested in multiple browsers and verified the feature.",Alice,UI Bug
@@ -99,7 +99,7 @@ Actual Behavior: No suggestions are displayed.",Resolved,P3,2024-01-05,2024-01-0
 Steps to Reproduce:
 1. Request user profile data through the API.
 Expected Behavior: Correct user data should be returned.
-Actual Behavior: Data returned is incorrect for certain users.",Resolved,P2,2024-01-10,2024-01-12,2 days,"1. Investigated logs and found a mismatch in user IDs in the database.
+Actual Behavior: Data returned is incorrect for certain users.",Resolved,P2,2024-01-10,2024-01-12,8,"1. Investigated logs and found a mismatch in user IDs in the database.
 2. Updated the API to use the correct user ID field.
 3. Tested with various user profiles and verified the fix.
 4. Deployed the changes and confirmed the correct data is now returned.",Bob,API
@@ -107,7 +107,7 @@ Actual Behavior: Data returned is incorrect for certain users.",Resolved,P2,2024
 Steps to Reproduce:
 1. Perform an action that should trigger an email notification.
 Expected Behavior: An email should be sent to the user.
-Actual Behavior: No email is sent.",Resolved,P1,2024-01-02,2024-01-04,2 days,"1. Identified an issue with the email server configuration.
+Actual Behavior: No email is sent.",Resolved,P1,2024-01-02,2024-01-04,8,"1. Identified an issue with the email server configuration.
 2. Updated email server settings to ensure all notifications are sent.
 3. Tested by triggering various actions and confirming email delivery.
 4. Deployed the changes and verified the email issue was resolved.",Emma,Notification
@@ -116,7 +116,7 @@ Steps to Reproduce:
 1. Open the project timeline view.
 2. View the tasks listed on the timeline.
 Expected Behavior: Tasks should be ordered chronologically.
-Actual Behavior: Tasks are displayed out of order.",Resolved,P2,2024-01-06,2024-01-07,1 day,"1. Identified an issue with the timeline sorting algorithm.
+Actual Behavior: Tasks are displayed out of order.",Resolved,P2,2024-01-06,2024-01-07,8,"1. Identified an issue with the timeline sorting algorithm.
 2. Updated the sorting function to order tasks by date.
 3. Tested with multiple projects to ensure proper sorting.
 4. Deployed the fix and verified tasks are now correctly ordered.",Charlie,UI Bug
@@ -124,7 +124,7 @@ Actual Behavior: Tasks are displayed out of order.",Resolved,P2,2024-01-06,2024-
 Steps to Reproduce:
 1. Open a report and click the 'Export to PDF' button.
 Expected Behavior: A PDF file of the report should be downloaded.
-Actual Behavior: Nothing happens when the button is clicked.",Resolved,P2,2024-01-08,2024-01-09,1 day,"1. Investigated logs and found an issue with the PDF generation library.
+Actual Behavior: Nothing happens when the button is clicked.",Resolved,P2,2024-01-08,2024-01-09,8,"1. Investigated logs and found an issue with the PDF generation library.
 2. Updated the library to the latest version.
 3. Tested PDF export with various reports to ensure functionality.
 4. Deployed the fix and confirmed the PDF export is now working.",Dave,Export
@@ -133,7 +133,7 @@ Steps to Reproduce:
 1. Go to the user settings page.
 2. Try to update any setting.
 Expected Behavior: Settings should be updated without any errors.
-Actual Behavior: An error message appears, and the setting is not saved.",Resolved,P2,2024-01-11,2024-01-12,1 day,"1. Investigated backend logs and identified a missing field validation.
+Actual Behavior: An error message appears, and the setting is not saved.",Resolved,P2,2024-01-11,2024-01-12,8,"1. Investigated backend logs and identified a missing field validation.
 2. Added the required validation to the settings update function.
 3. Tested the update process with different settings to confirm the fix.
 4. Deployed the fix and verified that the settings are now updated correctly.",Emma,Settings
@@ -148,7 +148,7 @@ Actual Behavior: The upload process times out.",In Progress,P1,2024-01-10,,,"1. 
 Steps to Reproduce:
 1. Go to the settings page and toggle dark mode.
 Expected Behavior: The interface should switch to dark mode.
-Actual Behavior: Nothing happens when the toggle is clicked.",Resolved,P3,2024-01-09,2024-01-10,1 day,"1. Identified a missing CSS file for dark mode styling.
+Actual Behavior: Nothing happens when the toggle is clicked.",Resolved,P3,2024-01-09,2024-01-10,8,"1. Identified a missing CSS file for dark mode styling.
 2. Added the correct CSS file and linked it in the settings.
 3. Tested the toggle functionality on different browsers and devices.
 4. Deployed the fix and confirmed dark mode is now working.",Alice,UI Bug
@@ -157,7 +157,7 @@ Steps to Reproduce:
 1. Create a new task and enter a description.
 2. Save the task and reopen it.
 Expected Behavior: The description should be saved and displayed correctly.
-Actual Behavior: The description is missing after reopening the task.",Resolved,P2,2024-01-04,2024-01-05,1 day,"1. Investigated the database logs and found an issue with the task description field.
+Actual Behavior: The description is missing after reopening the task.",Resolved,P2,2024-01-04,2024-01-05,8,"1. Investigated the database logs and found an issue with the task description field.
 2. Updated the database schema to properly store task descriptions.
 3. Tested task creation and description saving across multiple projects.
 4. Deployed the fix and confirmed descriptions are now saving correctly.",Bob,Database
@@ -165,7 +165,7 @@ Actual Behavior: The description is missing after reopening the task.",Resolved,
 Steps to Reproduce:
 1. Click the 'Download' button for any file.
 Expected Behavior: The file should download successfully.
-Actual Behavior: No file is downloaded.",Resolved,P1,2024-01-05,2024-01-06,1 day,"1. Investigated browser console logs and identified a cross-origin issue.
+Actual Behavior: No file is downloaded.",Resolved,P1,2024-01-05,2024-01-06,8,"1. Investigated browser console logs and identified a cross-origin issue.
 2. Updated server-side configuration to allow file downloads from all origins.
 3. Tested file downloads on various browsers and devices.
 4. Deployed the fix and confirmed downloads are now working as expected.",Dave,File Download
@@ -173,7 +173,7 @@ Actual Behavior: No file is downloaded.",Resolved,P1,2024-01-05,2024-01-06,1 day
 Steps to Reproduce:
 1. Open the user list page and try to go to the next page.
 Expected Behavior: The next set of users should be displayed.
-Actual Behavior: The page reloads but still shows the first set of users.",Resolved,P2,2024-01-10,2024-01-11,1 day,"1. Identified an issue with the pagination query in the backend.
+Actual Behavior: The page reloads but still shows the first set of users.",Resolved,P2,2024-01-10,2024-01-11,8,"1. Identified an issue with the pagination query in the backend.
 2. Updated the query to correctly fetch the next set of users.
 3. Tested pagination with different user sets to confirm the fix.
 4. Deployed the fix and verified that pagination is now working correctly.",Charlie,Pagination
@@ -182,7 +182,7 @@ Steps to Reproduce:
 1. Open any post on a mobile device.
 2. Scroll down to the comment section.
 Expected Behavior: The comment section should be fully visible and responsive.
-Actual Behavior: The comment section is cut off and not scrollable.",Resolved,P3,2024-01-07,2024-01-08,1 day,"1. Identified incorrect CSS styling for the comment section on mobile.
+Actual Behavior: The comment section is cut off and not scrollable.",Resolved,P3,2024-01-07,2024-01-08,8,"1. Identified incorrect CSS styling for the comment section on mobile.
 2. Updated the CSS to make the comment section responsive.
 3. Tested the comment section on multiple mobile devices to ensure visibility.
 4. Deployed the fix and confirmed the comment section is now fully visible on mobile.",Alice,UI Bug
@@ -190,7 +190,7 @@ Actual Behavior: The comment section is cut off and not scrollable.",Resolved,P3
 Steps to Reproduce:
 1. Perform a search and apply a date filter.
 Expected Behavior: Results should be filtered according to the selected date range.
-Actual Behavior: The date filter is ignored, and all results are displayed.",Resolved,P2,2024-01-08,2024-01-09,1 day,"1. Investigated the search query logic and identified an issue with the date filter parameter.
+Actual Behavior: The date filter is ignored, and all results are displayed.",Resolved,P2,2024-01-08,2024-01-09,8,"1. Investigated the search query logic and identified an issue with the date filter parameter.
 2. Updated the query to correctly apply the date filter.
 3. Tested search filtering with various date ranges.
 4. Deployed the fix and confirmed the filter is now working as expected.",Bob,Search
@@ -199,7 +199,7 @@ Steps to Reproduce:
 1. Create a task with a due date.
 2. Edit the task and change the due date.
 Expected Behavior: The due date should be updated to the new date.
-Actual Behavior: The due date remains unchanged.",Resolved,P2,2024-01-09,2024-01-10,1 day,"1. Investigated the task update logic and found an issue with the due date field.
+Actual Behavior: The due date remains unchanged.",Resolved,P2,2024-01-09,2024-01-10,8,"1. Investigated the task update logic and found an issue with the due date field.
 2. Updated the logic to correctly save due date changes.
 3. Tested task editing with various due dates to confirm the fix.
 4. Deployed the fix and verified that due dates are now updated correctly.",Emma,Task Management
@@ -207,7 +207,7 @@ Actual Behavior: The due date remains unchanged.",Resolved,P2,2024-01-09,2024-01
 Steps to Reproduce:
 1. Open a report and apply a filter.
 Expected Behavior: The report should display only the filtered data.
-Actual Behavior: The filter is ignored, and all data is displayed.",Resolved,P2,2024-01-06,2024-01-07,1 day,"1. Identified an issue with the filter query in the report generation logic.
+Actual Behavior: The filter is ignored, and all data is displayed.",Resolved,P2,2024-01-06,2024-01-07,8,"1. Identified an issue with the filter query in the report generation logic.
 2. Updated the query to correctly apply the selected filters.
 3. Tested report generation with various filters to confirm the fix.
 4. Deployed the fix and verified that filters are now working correctly.",Dave,Report
@@ -215,7 +215,7 @@ Actual Behavior: The filter is ignored, and all data is displayed.",Resolved,P2,
 Steps to Reproduce:
 1. Switch to dark mode and open any dropdown menu.
 Expected Behavior: The options should be clearly visible in the dropdown.
-Actual Behavior: The options are not visible due to the dark background.",Resolved,P3,2024-01-03,2024-01-04,1 day,"1. Identified an issue with the CSS styling for dropdowns in dark mode.
+Actual Behavior: The options are not visible due to the dark background.",Resolved,P3,2024-01-03,2024-01-04,8,"1. Identified an issue with the CSS styling for dropdowns in dark mode.
 2. Updated the CSS to adjust the background and text colors for better visibility.
 3. Tested dropdown menus in both light and dark modes to ensure functionality.
 4. Deployed the fix and confirmed that the options are now visible in dark mode.",Alice,UI Bug
@@ -223,7 +223,7 @@ Actual Behavior: The options are not visible due to the dark background.",Resolv
 Steps to Reproduce:
 1. Go to the profile settings page and upload a picture.
 Expected Behavior: The picture should upload successfully and be displayed on the profile.
-Actual Behavior: The upload fails with an error message.",Resolved,P2,2024-01-02,2024-01-03,1 day,"1. Investigated the file upload process and found an issue with the image validation logic.
+Actual Behavior: The upload fails with an error message.",Resolved,P2,2024-01-02,2024-01-03,8,"1. Investigated the file upload process and found an issue with the image validation logic.
 2. Updated the validation logic to accept all standard image formats.
 3. Tested profile picture uploads with various image formats to confirm the fix.
 4. Deployed the fix and verified that the upload is now working as expected.",Bob,File Upload
@@ -231,7 +231,7 @@ Actual Behavior: The upload fails with an error message.",Resolved,P2,2024-01-02
 Steps to Reproduce:
 1. Upload a file and try to preview it.
 Expected Behavior: The file should be previewed in the browser.
-Actual Behavior: The preview fails for certain file types.",Resolved,P3,2024-01-05,2024-01-06,1 day,"1. Identified a missing file type handler in the preview function.
+Actual Behavior: The preview fails for certain file types.",Resolved,P3,2024-01-05,2024-01-06,8,"1. Identified a missing file type handler in the preview function.
 2. Added support for additional file types in the preview logic.
 3. Tested file previews with various file types to confirm the fix.
 4. Deployed the fix and verified that previews are now working for all supported file types.",Charlie,File Preview
@@ -239,7 +239,7 @@ Actual Behavior: The preview fails for certain file types.",Resolved,P3,2024-01-
 Steps to Reproduce:
 1. Assign a task to a user.
 Expected Behavior: The assigned user should receive a notification.
-Actual Behavior: No notification is sent.",Resolved,P2,2024-01-09,2024-01-10,1 day,"1. Investigated the notification logic and found an issue with the task assignment event.
+Actual Behavior: No notification is sent.",Resolved,P2,2024-01-09,2024-01-10,8,"1. Investigated the notification logic and found an issue with the task assignment event.
 2. Updated the logic to trigger notifications on task assignments.
 3. Tested task assignments and verified that notifications are now being sent correctly.
 4. Deployed the fix and confirmed that notifications are now working as expected.",Emma,Notification
@@ -247,7 +247,7 @@ Actual Behavior: No notification is sent.",Resolved,P2,2024-01-09,2024-01-10,1 d
 Steps to Reproduce:
 1. Upload a file and observe the progress bar.
 Expected Behavior: The progress bar should update in real-time as the file uploads.
-Actual Behavior: The progress bar remains static until the upload is complete.",Resolved,P2,2024-01-06,2024-01-07,1 day,"1. Identified an issue with the progress bar update logic in the file upload process.
+Actual Behavior: The progress bar remains static until the upload is complete.",Resolved,P2,2024-01-06,2024-01-07,8,"1. Identified an issue with the progress bar update logic in the file upload process.
 2. Updated the logic to send real-time updates to the progress bar during uploads.
 3. Tested file uploads with various file sizes to confirm the fix.
 4. Deployed the fix and verified that the progress bar is now updating correctly.",Dave,File Upload
@@ -256,7 +256,7 @@ Steps to Reproduce:
 1. Go to the user profile page.
 2. Make changes to the profile and save.
 Expected Behavior: Profile changes should be saved successfully.
-Actual Behavior: An error message is displayed, and changes are not saved.",Resolved,P2,2024-01-07,2024-01-08,1 day,"1. Investigated the backend error logs and identified an issue with the profile update API.
+Actual Behavior: An error message is displayed, and changes are not saved.",Resolved,P2,2024-01-07,2024-01-08,8,"1. Investigated the backend error logs and identified an issue with the profile update API.
 2. Updated the API to handle null values and validation errors.
 3. Tested profile updates with various inputs to confirm the fix.
 4. Deployed the fix and verified that profile changes are now saved correctly.",Charlie,Profile
@@ -264,7 +264,7 @@ Actual Behavior: An error message is displayed, and changes are not saved.",Reso
 Steps to Reproduce:
 1. Open any dropdown menu on a small screen device.
 Expected Behavior: Menu items should be aligned and visible.
-Actual Behavior: Menu items are misaligned and not fully visible.",Resolved,P3,2024-01-05,2024-01-06,1 day,"1. Identified an issue with the CSS media queries for small screens.
+Actual Behavior: Menu items are misaligned and not fully visible.",Resolved,P3,2024-01-05,2024-01-06,8,"1. Identified an issue with the CSS media queries for small screens.
 2. Updated the CSS to ensure proper alignment of dropdown items on small screens.
 3. Tested dropdown menus on various devices and screen sizes.
 4. Deployed the fix and confirmed that menu items are now properly aligned.",Alice,UI Bug
@@ -272,7 +272,7 @@ Actual Behavior: Menu items are misaligned and not fully visible.",Resolved,P3,2
 Steps to Reproduce:
 1. Post a new comment on an issue or pull request.
 Expected Behavior: All subscribers should receive an email notification.
-Actual Behavior: No email notifications are sent.",Resolved,P2,2024-01-08,2024-01-09,1 day,"1. Investigated the email notification service and identified a configuration issue.
+Actual Behavior: No email notifications are sent.",Resolved,P2,2024-01-08,2024-01-09,8,"1. Investigated the email notification service and identified a configuration issue.
 2. Updated the service configuration to ensure notifications are sent for new comments.
 3. Tested notifications for new comments on various issues and pull requests.
 4. Deployed the fix and verified that email notifications are now sent correctly.",Bob,Notification
@@ -280,7 +280,7 @@ Actual Behavior: No email notifications are sent.",Resolved,P2,2024-01-08,2024-0
 Steps to Reproduce:
 1. Update the progress of a task.
 Expected Behavior: The progress bar should reflect the updated task progress.
-Actual Behavior: The progress bar remains static and does not update.",Resolved,P3,2024-01-10,2024-01-11,1 day,"1. Identified an issue with the progress bar update function.
+Actual Behavior: The progress bar remains static and does not update.",Resolved,P3,2024-01-10,2024-01-11,8,"1. Identified an issue with the progress bar update function.
 2. Updated the function to correctly reflect progress changes in real-time.
 3. Tested progress updates on multiple tasks to confirm the fix.
 4. Deployed the fix and confirmed that progress bars are now updating as expected.",Emma,Task Management
@@ -288,7 +288,7 @@ Actual Behavior: The progress bar remains static and does not update.",Resolved,
 Steps to Reproduce:
 1. Perform a search and apply a date sorting filter.
 Expected Behavior: Results should be sorted by the selected date range.
-Actual Behavior: Results are displayed in the original order.",Resolved,P2,2024-01-11,2024-01-12,1 day,"1. Investigated the search sorting logic and identified an issue with the date parameter.
+Actual Behavior: Results are displayed in the original order.",Resolved,P2,2024-01-11,2024-01-12,8,"1. Investigated the search sorting logic and identified an issue with the date parameter.
 2. Updated the sorting logic to correctly order results by date.
 3. Tested search results with various date ranges.
 4. Deployed the fix and verified that results are now sorted correctly.",Dave,Search
@@ -297,7 +297,7 @@ Steps to Reproduce:
 1. Open any issue with file attachments.
 2. Click on the attachment link to download.
 Expected Behavior: The file should download successfully.
-Actual Behavior: Download fails with an error message.",Resolved,P1,2024-01-04,2024-01-05,1 day,"1. Investigated the attachment download service and identified a permission issue.
+Actual Behavior: Download fails with an error message.",Resolved,P1,2024-01-04,2024-01-05,8,"1. Investigated the attachment download service and identified a permission issue.
 2. Updated the permissions to allow file downloads.
 3. Tested downloads for various file types.
 4. Deployed the fix and confirmed that file attachments can now be downloaded.",Charlie,File Download
@@ -306,7 +306,7 @@ Steps to Reproduce:
 1. Reset the user password.
 2. Try to log in with the new password.
 Expected Behavior: User should be able to log in with the new password.
-Actual Behavior: Login fails with an incorrect password error.",Resolved,P1,2024-01-06,2024-01-07,1 day,"1. Identified an issue with the password reset function and token validation.
+Actual Behavior: Login fails with an incorrect password error.",Resolved,P1,2024-01-06,2024-01-07,8,"1. Identified an issue with the password reset function and token validation.
 2. Updated the function to correctly validate the new password.
 3. Tested the login process after password reset.
 4. Deployed the fix and confirmed that users can now log in successfully.",Bob,Authentication
@@ -314,7 +314,7 @@ Actual Behavior: Login fails with an incorrect password error.",Resolved,P1,2024
 Steps to Reproduce:
 1. Open any markdown file with links.
 Expected Behavior: Links should navigate to the correct pages.
-Actual Behavior: Links are broken and lead to 404 errors.",Resolved,P3,2024-01-09,2024-01-10,1 day,"1. Investigated the markdown rendering logic and identified broken link handling issues.
+Actual Behavior: Links are broken and lead to 404 errors.",Resolved,P3,2024-01-09,2024-01-10,8,"1. Investigated the markdown rendering logic and identified broken link handling issues.
 2. Updated the rendering logic to fix broken links.
 3. Tested markdown files with various links to confirm the fix.
 4. Deployed the fix and verified that links are now working.",Alice,Markdown
@@ -323,7 +323,7 @@ Steps to Reproduce:
 1. Add labels to a task.
 2. Open the task and check the labels.
 Expected Behavior: Labels should be displayed correctly on the task.
-Actual Behavior: Labels are not visible or incorrectly displayed.",Resolved,P2,2024-01-07,2024-01-08,1 day,"1. Identified an issue with the label rendering logic.
+Actual Behavior: Labels are not visible or incorrectly displayed.",Resolved,P2,2024-01-07,2024-01-08,8,"1. Identified an issue with the label rendering logic.
 2. Updated the logic to correctly display labels on tasks.
 3. Tested label display on various tasks and boards.
 4. Deployed the fix and confirmed that labels are now visible and correctly displayed.",Emma,UI Bug
@@ -331,7 +331,7 @@ Actual Behavior: Labels are not visible or incorrectly displayed.",Resolved,P2,2
 Steps to Reproduce:
 1. Open the dashboard with various widgets.
 Expected Behavior: Widgets should load and display data correctly.
-Actual Behavior: Some widgets fail to load data.",Resolved,P2,2024-01-08,2024-01-09,1 day,"1. Investigated the widget loading logic and identified a data fetching issue.
+Actual Behavior: Some widgets fail to load data.",Resolved,P2,2024-01-08,2024-01-09,8,"1. Investigated the widget loading logic and identified a data fetching issue.
 2. Updated the logic to correctly fetch and display widget data.
 3. Tested widgets on different dashboards to confirm the fix.
 4. Deployed the fix and verified that all widgets are now loading properly.",Dave,Dashboard
@@ -339,7 +339,7 @@ Actual Behavior: Some widgets fail to load data.",Resolved,P2,2024-01-08,2024-01
 Steps to Reproduce:
 1. Open various pages and compare button styles.
 Expected Behavior: Buttons should have consistent styling across all pages.
-Actual Behavior: Button styles vary from page to page.",Resolved,P3,2024-01-11,2024-01-12,1 day,"1. Identified inconsistencies in the CSS for buttons.
+Actual Behavior: Button styles vary from page to page.",Resolved,P3,2024-01-11,2024-01-12,8,"1. Identified inconsistencies in the CSS for buttons.
 2. Updated the CSS to ensure consistent button styling across pages.
 3. Tested button styles on multiple pages.
 4. Deployed the fix and confirmed that button styling is now consistent.",Alice,UI Bug
@@ -347,7 +347,7 @@ Actual Behavior: Button styles vary from page to page.",Resolved,P3,2024-01-11,2
 Steps to Reproduce:
 1. Submit a form with invalid inputs.
 Expected Behavior: Validation errors should be displayed next to the invalid fields.
-Actual Behavior: No validation errors are shown.",Resolved,P2,2024-01-05,2024-01-06,1 day,"1. Identified an issue with the form validation error display logic.
+Actual Behavior: No validation errors are shown.",Resolved,P2,2024-01-05,2024-01-06,8,"1. Identified an issue with the form validation error display logic.
 2. Updated the logic to correctly show validation errors.
 3. Tested form validation with various invalid inputs.
 4. Deployed the fix and confirmed that validation errors are now displayed correctly.",Bob,Form Validation
@@ -355,7 +355,7 @@ Actual Behavior: No validation errors are shown.",Resolved,P2,2024-01-05,2024-01
 Steps to Reproduce:
 1. Perform an action that should update the activity feed.
 Expected Behavior: The activity feed should update in real-time.
-Actual Behavior: The feed is not updated until the page is refreshed.",Resolved,P2,2024-01-06,2024-01-07,1 day,"1. Investigated the activity feed update mechanism.
+Actual Behavior: The feed is not updated until the page is refreshed.",Resolved,P2,2024-01-06,2024-01-07,8,"1. Investigated the activity feed update mechanism.
 2. Updated the mechanism to push real-time updates to the feed.
 3. Tested the feed updates with various user actions.
 4. Deployed the fix and verified that the activity feed is now updating in real-time.",Charlie,Activity Feed
@@ -364,7 +364,7 @@ Steps to Reproduce:
 1. Add an attachment to a task.
 2. Open the task details.
 Expected Behavior: Attachments should be visible in the task details.
-Actual Behavior: Attachments are not displayed.",Resolved,P3,2024-01-08,2024-01-09,1 day,"1. Identified an issue with the attachment display logic in task details.
+Actual Behavior: Attachments are not displayed.",Resolved,P3,2024-01-08,2024-01-09,8,"1. Identified an issue with the attachment display logic in task details.
 2. Updated the logic to ensure attachments are visible.
 3. Tested attachments visibility in task details.
 4. Deployed the fix and confirmed that attachments are now visible.",Emma,File Attachment
@@ -372,7 +372,7 @@ Actual Behavior: Attachments are not displayed.",Resolved,P3,2024-01-08,2024-01-
 Steps to Reproduce:
 1. Fill out a form and reload the page.
 Expected Behavior: Form data should be saved and restored after the reload.
-Actual Behavior: Form data is lost after reloading the page.",Resolved,P1,2024-01-10,2024-01-11,1 day,"1. Investigated the form data saving logic.
+Actual Behavior: Form data is lost after reloading the page.",Resolved,P1,2024-01-10,2024-01-11,8,"1. Investigated the form data saving logic.
 2. Updated the logic to save form data in local storage before page reload.
 3. Tested form data saving and restoration after page reload.
 4. Deployed the fix and confirmed that form data is now saved correctly.",Dave,Form Management
@@ -380,7 +380,7 @@ Actual Behavior: Form data is lost after reloading the page.",Resolved,P1,2024-0
 Steps to Reproduce:
 1. Open the settings page on a mobile device.
 Expected Behavior: The layout should be responsive and properly formatted.
-Actual Behavior: The layout is broken and elements are misaligned.",Resolved,P3,2024-01-09,2024-01-10,1 day,"1. Identified issues with the responsive design for the settings page.
+Actual Behavior: The layout is broken and elements are misaligned.",Resolved,P3,2024-01-09,2024-01-10,8,"1. Identified issues with the responsive design for the settings page.
 2. Updated the CSS to fix layout issues on mobile devices.
 3. Tested the settings page on various mobile devices.
 4. Deployed the fix and confirmed that the layout is now responsive and properly formatted.",Alice,Mobile View
@@ -388,7 +388,7 @@ Actual Behavior: The layout is broken and elements are misaligned.",Resolved,P3,
 Steps to Reproduce:
 1. Open the date picker in a form.
 Expected Behavior: The date picker should allow selection of dates.
-Actual Behavior: The date picker is non-functional and does not allow date selection.",Resolved,P2,2024-01-07,2024-01-08,1 day,"1. Identified an issue with the date picker component.
+Actual Behavior: The date picker is non-functional and does not allow date selection.",Resolved,P2,2024-01-07,2024-01-08,8,"1. Identified an issue with the date picker component.
 2. Updated the component to ensure it allows date selection.
 3. Tested the date picker with various dates.
 4. Deployed the fix and confirmed that the date picker is now functional.",Bob,Date Picker
@@ -397,7 +397,7 @@ Steps to Reproduce:
 1. Request a password reset.
 2. Check email for the reset link.
 Expected Behavior: An email with the reset link should be received.
-Actual Behavior: No email is received.",Resolved,P1,2024-01-05,2024-01-06,1 day,"1. Investigated the email sending mechanism for password resets.
+Actual Behavior: No email is received.",Resolved,P1,2024-01-05,2024-01-06,8,"1. Investigated the email sending mechanism for password resets.
 2. Updated the email service configuration to ensure delivery.
 3. Tested password reset emails for various user accounts.
 4. Deployed the fix and confirmed that reset emails are now received.",Charlie,Email
@@ -406,7 +406,7 @@ Steps to Reproduce:
 1. Add a comment to a task.
 2. Save the task and reopen it.
 Expected Behavior: Comments should be saved and visible.
-Actual Behavior: Comments are not saved and disappear after reopening the task.",Resolved,P2,2024-01-11,2024-01-12,1 day,"1. Identified an issue with the comment saving mechanism.
+Actual Behavior: Comments are not saved and disappear after reopening the task.",Resolved,P2,2024-01-11,2024-01-12,8,"1. Identified an issue with the comment saving mechanism.
 2. Updated the mechanism to ensure comments are correctly saved and displayed.
 3. Tested comments saving and retrieval.
 4. Deployed the fix and confirmed that comments are now saved correctly.",Emma,Task Management
@@ -414,7 +414,7 @@ Actual Behavior: Comments are not saved and disappear after reopening the task."
 Steps to Reproduce:
 1. Open the user settings page.
 Expected Behavior: The settings page should load without errors.
-Actual Behavior: An error message is displayed when loading the page.",Resolved,P1,2024-01-06,2024-01-07,1 day,"1. Investigated the error message and identified a server-side issue.
+Actual Behavior: An error message is displayed when loading the page.",Resolved,P1,2024-01-06,2024-01-07,8,"1. Investigated the error message and identified a server-side issue.
 2. Updated the server configuration to fix the error.
 3. Tested the settings page loading process.
 4. Deployed the fix and confirmed that the user settings page now loads correctly.",Dave,User Settings

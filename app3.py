@@ -10,6 +10,7 @@ from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 from langchain_community.llms import OpenAI
 from dotenv import load_dotenv
+import statistics
 
 # Load environment variables from .env file
 load_dotenv()
@@ -184,6 +185,8 @@ if st.button("Analyze Bug"):
                     # Create a table for bug details
                     bug_data = []
                     all_solution_steps = []
+                    # collect resolution times
+                    resolution_times = []
 
                     for result, score in filtered_results:
                         try:
@@ -205,11 +208,32 @@ if st.button("Analyze Bug"):
                                 "Description": description,
                                 "Similarity Score (%)": f"{score * 100:.2f}"
                             })
+                            
+                            if hasattr(result, 'metadata') and isinstance(result.metadata, dict):
+                                resolution_time = result.metadata.get('resolution_time_hrs', None)
+                                if resolution_time is not None:
+                                    try:
+                                        resolution_time = float(resolution_time)
+                                        if resolution_time > 0:
+                                            resolution_times.append(resolution_time)
+                                    except ValueError:
+                                        continue
+                                # print(resolution_times)
+                            else:
+                                print("No resolution time")
+
                         except Exception as e:
                             st.error(f"Error processing result: {str(e)}")
 
                     # Display bug data in a table
                     st.table(bug_data)
+
+                    # get median of resolution times
+                    if resolution_times:
+                        median_resolution_time = statistics.median(resolution_times)
+                        print(median_resolution_time)
+                    else:
+                        st.write("No resolution time available")
 
                     # Generate AI summary based on all solution steps
                     if all_solution_steps:
@@ -217,6 +241,7 @@ if st.button("Analyze Bug"):
                         summary = generate_summary(bug_description, combined_solution_steps)  # Assuming generate_summary can handle empty description
                         st.subheader("Suggested Solution Steps:")
                         st.write(summary)
+                        st.write("Based on the similar bugs found, it would take approximately ",median_resolution_time," hours to fix this issue.")
                 else:
                     st.write("No similar bugs found with a score greater than 0.75.")
             else:
