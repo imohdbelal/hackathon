@@ -11,6 +11,8 @@ from langchain.prompts import PromptTemplate
 from langchain_community.llms import OpenAI
 from dotenv import load_dotenv
 import statistics
+from google.cloud import bigquery
+from google.oauth2 import service_account
 
 # Load environment variables from .env file
 load_dotenv()
@@ -22,6 +24,7 @@ DIMENSION = int(os.getenv("DIMENSION"))
 METRIC = os.getenv("METRIC")
 CLOUD = os.getenv("CLOUD")
 REGION = os.getenv("REGION")
+GOOGLE_APPLICATION_CREDENTIALS = service_account.Credentials.from_service_account_file('rag-learn-435708-b315be6933d4.json')
 
 # Initialize Pinecone using the Pinecone class
 pinecone = Pinecone(api_key=PINECONE_API_KEY)
@@ -115,6 +118,31 @@ def upload_embeddings_to_pinecone(df):
     except Exception as e:
         st.error(f"Error uploading embeddings: {str(e)}")
 
+# Set up BigQuery client
+client = bigquery.Client(credentials=GOOGLE_APPLICATION_CREDENTIALS, project='rag-learn-435708')
+
+# Define BigQuery table ID (project_id.dataset_id.table_id)
+table_id = "rag-learn-435708.rag_1.bugs"
+
+    # Function to upload data to bigquery
+def upload_data_to_bigquery(df):
+    try:
+        # Configure the load job to overwrite existing table data
+        job_config = bigquery.LoadJobConfig(
+            write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE,  # Overwrites table
+        )
+
+        # Upload the DataFrame to BigQuery
+        job = client.load_table_from_dataframe(df, table_id, job_config=job_config)
+
+        # Wait for the job to complete
+        job.result()
+
+        print(f"Data uploaded successfully to {table_id}")
+        st.sidebar.write("Data uploaded to BigQuery successfully!")
+    except Exception as e:
+        st.error(f"Error uploading data to BigQuery: {str(e)}")
+
 # Processing the uploaded dataset
 if uploaded_file:
     try:
@@ -122,6 +150,7 @@ if uploaded_file:
         # print(df)
         st.sidebar.write("Dataset loaded successfully!")
         upload_embeddings_to_pinecone(df)
+        # upload_data_to_bigquery(df)
     except Exception as e:
         st.sidebar.error(f"Failed to process the file: {str(e)}")
 else:
@@ -271,3 +300,14 @@ if 'search_results' in locals() and search_results:
                 st.sidebar.write(f"Solution Steps: {solution_steps}")
         except Exception as e:
             st.sidebar.error(f"Error displaying result: {str(e)}")
+
+# Add a link to Looker Studio dash
+st.sidebar.markdown(
+    """
+    <div style='position: fixed; bottom: 10px;'>
+        <a href="https://lookerstudio.google.com/u/0/reporting/a6a55855-c46f-446a-b4ba-ddf64ffd3a63/page/djqCE" target="_blank" style='color:blue; text-decoration:none;'>
+            View data overview
+        </a>
+    </div>
+    """, unsafe_allow_html=True
+)

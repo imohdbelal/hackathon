@@ -6,3 +6,4 @@ pinecone-client
 langchain
 langchain-community
 python-dotenv
+google-cloud-bigquery
